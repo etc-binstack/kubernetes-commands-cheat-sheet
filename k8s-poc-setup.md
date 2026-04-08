@@ -1,5 +1,9 @@
 # Kubernetes POC Setup (v1.29)
 
+![Kubernetes](https://img.shields.io/badge/Kubernetes-1.28+-326CE5?style=flat&logo=kubernetes&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-green?style=flat)
+![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat)
+
 - Single-node / Multi-node ready
 - Local VM / Cloud VM
 - Minimal setup using kubeadm + containerd (modern approach)
