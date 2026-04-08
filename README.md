@@ -30,6 +30,19 @@ A **real-world Kubernetes commands cheat sheet** for DevOps engineers covering:
 
 ---
 
+## ⚡ Quick Start (POC Setup)
+
+Want to spin up your own Kubernetes cluster in minutes?
+
+👉 [Kubernetes POC Setup Guide (v1.29)](./k8s-poc-setup.md)
+
+- Single-node & multi-node support  
+- containerd (modern) + Docker (optional)  
+- Includes MetalLB LoadBalancer setup  
+- Works on local VM & cloud (AWS EC2)
+
+---
+
 ## 📌 Who is this for?
 
 - DevOps Engineers
