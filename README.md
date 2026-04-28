@@ -1396,7 +1396,30 @@ kubectl get pods -n kube-system | grep metrics-server
 kubectl top pods -n <namespace>
 ```
 
-**Why it matters:** If HPA shows `<unknown>/70%` for CPU, metrics-server is not running or the deployment has no resource `requests` set — HPA can't calculate a ratio without a baseline.
+**Why it matters:** If HPA shows `<unknown>/70%` for CPU, `metrics-server` is not installed/running or the deployment has no resource `requests` set — HPA can't calculate a ratio without a baseline.
+
+```
+# HPA cannot read resource usage without it.
+horizontalpodautoscaler.autoscaling/svc-name-hpa   Deployment/svc-name   <unknown>/70%, <unknown>/80%
+```
+
+#### *SOLUTION*:
+
+```bash
+# Install metrics-server:
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+
+# Fix for kubeadm / self-hosted EC2 (kubelet uses self-signed certs):
+kubectl patch deployment metrics-server -n kube-system \
+  --type='json' \
+  -p='[{"op":"add","path":"/spec/template/spec/containers/0/args/-","value":"--kubelet-insecure-tls"}]'
+
+# Wait `~60` seconds and verify:
+kubectl top nodes
+kubectl top pods -n namespace_name
+kubectl get hpa -n namespace_name
+```
+
 
 ---
 
